@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgrounddd"
+    android:orientation="vertical"
+    tools:context=".ProfileSettingsActivity">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/beyaz_kutu"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Kullanıcı Adı:"
+                android:textSize="30sp"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/bt_check_username"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="2"
+                android:background="@drawable/image_button_background"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/check" />
+
+            <ImageButton
+                android:id="@+id/bt_edit_username"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:background="@drawable/image_button_background"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/edit_icon" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/et_edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yükleniyor.."
+            android:textColor="@color/text_color"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/beyaz_kutu"
+        android:padding="10dp"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="İsim:"
+                android:textSize="30sp"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/bt_check_name"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="2"
+                android:background="@drawable/image_button_background"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/check" />
+
+            <ImageButton
+                android:id="@+id/bt_edit_name"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:background="@drawable/image_button_background"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/edit_icon" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/et_edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yükleniyor.."
+            android:textColor="@color/text_color"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/beyaz_kutu"
+        android:padding="10dp"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Soy İsim:"
+                android:textSize="30sp"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/bt_check_surname"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="2"
+                android:background="@drawable/image_button_background"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/check" />
+
+            <ImageButton
+                android:id="@+id/bt_edit_surname"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:background="@drawable/image_button_background"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/edit_icon" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/et_edit_surname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yükleniyor.."
+            android:textColor="@color/text_color"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/beyaz_kutu"
+        android:padding="10dp"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Telefon Numarası:"
+                android:textSize="30sp"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/bt_check_tel"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="2"
+                android:background="@drawable/image_button_background"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/check" />
+
+            <ImageButton
+                android:id="@+id/bt_edit_tel"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:background="@drawable/image_button_background"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/edit_icon" />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/et_edit_tel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yükleniyor.."
+            android:inputType="number"
+            android:textColor="@color/text_color"
+            android:textSize="25sp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_ps_reset_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Şifreni Sıfırla"
+        android:textAllCaps="false"
+        android:background="@drawable/button_riple"
+        android:textColor="@color/text_color"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:padding="8dp"
+        android:layout_margin="15dp"/>
+
+    <ProgressBar
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/pb_profile_settings"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/beyaz_kutu"
+    android:padding="16dp">
+
+
+    <CheckBox
+        android:id="@+id/cb_city"
+        android:buttonTint="@color/checkbox_color"
+        android:textSize="20sp"
+        android:text="Şehir Seçin"
+        android:textColor="@color/text_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <Spinner
+        android:background="@drawable/button_riple"
+        android:id="@+id/spinner_city"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="36dp" />
+    <CheckBox
+        android:id="@+id/cb_category"
+        android:buttonTint="@color/checkbox_color"
+        android:textSize="20sp"
+        android:text="Kategori Seçin"
+        android:textColor="@color/text_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Spinner
+        android:background="@drawable/button_riple"
+        android:id="@+id/spinner_category"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="36dp" />
+
+    <!-- Fiyat Aralığı -->
+    <CheckBox
+        android:id="@+id/cb_price"
+        android:buttonTint="@color/checkbox_color"
+        android:textSize="20sp"
+        android:text="Fiyat Aralığı Seçin"
+        android:textColor="@color/text_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="36dp">
+
+        <EditText
+            android:textColor="@color/text_color"
+            android:background="@color/button_default"
+            android:textColorHint="@color/hint_color"
+            android:id="@+id/et_min_price"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="Min Fiyat"
+            android:inputType="number" />
+
+        <TextView
+            android:textColor="@color/text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" - "
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginHorizontal="8dp" />
+
+        <EditText
+            android:textColor="@color/text_color"
+            android:background="@color/button_default"
+            android:textColorHint="@color/hint_color"
+            android:id="@+id/et_max_price"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:hint="Max Fiyat"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <!-- Onay Butonu -->
+    <Button
+        android:onClick="applyFilter"
+        android:id="@+id/btn_apply_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filtreleri Uygula"
+        android:background="@drawable/button_riple"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
