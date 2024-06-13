@@ -125,109 +125,42 @@ class filteringFragment : Fragment() {
             }
         }
         binding.btnApplyFilters.setOnClickListener {
-            if (checkBoxPrice.isChecked){
-                if (editTextPriceMin.text.isEmpty() && editTextPriceMax.text.isEmpty()) {
-                    checkBoxPrice.isChecked =false
-                }
-            }
-            if (!checkBoxCategory.isChecked && !checkBoxCity.isChecked && checkBoxPrice.isChecked) {
-                if (editTextPriceMin.text.isEmpty()) editTextPriceMin.setText("0")
-                else if (editTextPriceMax.text.isEmpty()) editTextPriceMax.setText("0")
-                db.collection("events")
-                    .whereGreaterThanOrEqualTo("price", editTextPriceMin.text.toString().toInt())
-                    .whereLessThanOrEqualTo("price", editTextPriceMax.text.toString().toInt()).get()
-                    .addOnSuccessListener { snapshot ->
-                        if (snapshot != null && !snapshot.isEmpty) {
-                            for (event in snapshot.documents) {
-                                filteredEvents.add(event.get("locationLatLng") as GeoPoint)
-                            }
-                            updateMarkersListener.updateMarkers(filteredEvents)
-                        }
-                    }
-            } else if (!checkBoxCategory.isChecked && checkBoxCity.isChecked && !checkBoxPrice.isChecked) {
-                db.collection("events").whereEqualTo("city", spinnerSelectedCity).get()
-                    .addOnSuccessListener { snapshot ->
-                        if (snapshot != null && !snapshot.isEmpty) {
-                            for (event in snapshot.documents) {
-                                filteredEvents.add(event.get("locationLatLng") as GeoPoint)
-                            }
-                            updateMarkersListener.updateMarkers(filteredEvents)
-                        }
-                    }
-            } else if (checkBoxCategory.isChecked && !checkBoxCity.isChecked && !checkBoxPrice.isChecked) {
-                db.collection("events").whereEqualTo("category", spinnerSelectedCategory).get()
-                    .addOnSuccessListener { snapshot ->
-                        if (snapshot != null && !snapshot.isEmpty) {
-                            for (event in snapshot.documents) {
-                                filteredEvents.add(event.get("locationLatLng") as GeoPoint)
-                            }
-                            updateMarkersListener.updateMarkers(filteredEvents)
-                        }
+            filteredEvents.clear()
 
-                    }
-            } else if (checkBoxCategory.isChecked && checkBoxCity.isChecked && !checkBoxPrice.isChecked) {
-                db.collection("events").whereEqualTo("category", spinnerSelectedCategory)
-                    .whereEqualTo("city", spinnerSelectedCity).get()
-                    .addOnSuccessListener { snapshot ->
-                        if (snapshot != null && !snapshot.isEmpty) {
-                            for (event in snapshot.documents) {
-                                filteredEvents.add(event.get("locationLatLng") as GeoPoint)
-                            }
-                            updateMarkersListener.updateMarkers(filteredEvents)
-                        }
-                    }
-            } else if (checkBoxCategory.isChecked && !checkBoxCity.isChecked && checkBoxPrice.isChecked) {
-                if (editTextPriceMin.text.isEmpty()) editTextPriceMin.setText("0")
-                else if (editTextPriceMax.text.isEmpty()) editTextPriceMax.setText("0")
-                db.collection("events").whereEqualTo("category", spinnerSelectedCategory)
-                    .whereGreaterThanOrEqualTo("price", editTextPriceMin.text.toString().toInt())
-                    .whereLessThanOrEqualTo("price", editTextPriceMax.text.toString().toInt()).get()
-                    .addOnSuccessListener { snapshot ->
-                        if (snapshot != null && !snapshot.isEmpty) {
-                            for (event in snapshot.documents) {
-                                filteredEvents.add(event.get("locationLatLng") as GeoPoint)
-                            }
-                            updateMarkersListener.updateMarkers(filteredEvents)
-                        }
-                    }
-            } else if (!checkBoxCategory.isChecked && checkBoxCity.isChecked && checkBoxPrice.isChecked) {
-                if (editTextPriceMin.text.isEmpty()) editTextPriceMin.setText("0")
-                else if (editTextPriceMax.text.isEmpty()) editTextPriceMax.setText("0")
-                db.collection("events").whereEqualTo("city", spinnerSelectedCity)
-                    .whereGreaterThanOrEqualTo("price", editTextPriceMin.text.toString().toInt())
-                    .whereLessThanOrEqualTo("price", editTextPriceMax.text.toString().toInt()).get()
-                    .addOnSuccessListener { snapshot ->
-                        if (snapshot != null && !snapshot.isEmpty) {
-                            for (event in snapshot.documents) {
-                                filteredEvents.add(event.get("locationLatLng") as GeoPoint)
-                            }
-                            updateMarkersListener.updateMarkers(filteredEvents)
-                        }
-                    }
-            }else if (checkBoxCategory.isChecked && checkBoxCity.isChecked && checkBoxPrice.isChecked){
-                if (editTextPriceMin.text.isEmpty()) editTextPriceMin.setText("0")
-                else if (editTextPriceMax.text.isEmpty()) editTextPriceMax.setText("0")
-                db.collection("events").whereEqualTo("category", spinnerSelectedCategory).whereEqualTo("city", spinnerSelectedCity)
-                    .whereGreaterThanOrEqualTo("price", editTextPriceMin.text.toString().toInt())
-                    .whereLessThanOrEqualTo("price", editTextPriceMax.text.toString().toInt()).get()
-                    .addOnSuccessListener { snapshot->
-                        if (snapshot != null && !snapshot.isEmpty) {
-                            for (event in snapshot.documents) {
-                                filteredEvents.add(event.get("locationLatLng") as GeoPoint)
-                            }
-                            updateMarkersListener.updateMarkers(filteredEvents)
-                        }
-                    }
-            }else if (!checkBoxCategory.isChecked && !checkBoxCity.isChecked && !checkBoxPrice.isChecked){
-                db.collection("events").get().addOnSuccessListener { snapshot->
-                    if (snapshot != null && !snapshot.isEmpty) {
-                        for (event in snapshot.documents) {
-                            filteredEvents.add(event.get("locationLatLng") as GeoPoint)
-                        }
-                        updateMarkersListener.updateMarkers(filteredEvents)
-                    }
+            if (checkBoxPrice.isChecked) {
+                when {
+                    editTextPriceMin.text.isEmpty() && editTextPriceMax.text.isEmpty() -> checkBoxPrice.isChecked = false
+                    editTextPriceMin.text.isEmpty() -> editTextPriceMin.setText("0")
+                    editTextPriceMax.text.isEmpty() -> editTextPriceMax.setText("99999")
                 }
             }
+
+            var query: Query = db.collection("events")
+
+            if (checkBoxCategory.isChecked) {
+                query = query.whereEqualTo("category", spinnerSelectedCategory)
+            }
+            if (checkBoxCity.isChecked) {
+                query = query.whereEqualTo("city", spinnerSelectedCity)
+            }
+            if (checkBoxPrice.isChecked) {
+                val minPrice = editTextPriceMin.text.toString().toInt()
+                val maxPrice = editTextPriceMax.text.toString().toInt()
+                query = query.whereGreaterThanOrEqualTo("price", minPrice)
+                    .whereLessThanOrEqualTo("price", maxPrice)
+            }
+
+            query.get().addOnSuccessListener { snapshot ->
+                if (snapshot != null && !snapshot.isEmpty) {
+                    for (event in snapshot.documents) {
+                        filteredEvents.add(event.get("locationLatLng") as GeoPoint)
+                    }
+                    updateMarkersListener.updateMarkers(filteredEvents)
+                }
+            }.addOnFailureListener { e->
+                println(e.localizedMessage)
+            }
+
             parentFragmentManager.beginTransaction().hide(this).commit()
         }
     }
